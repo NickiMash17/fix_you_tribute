@@ -1,6 +1,6 @@
 # Fix You - Coldplay Tribute Website
 
-![Website Screenshot](https://i.imgur.com/JX9Z3xO.png)
+![Website Screenshot](project.png)
 
 A responsive, interactive tribute page dedicated to Coldplay's iconic song "Fix You". This project showcases modern web design techniques with animations, audio player simulation, and engaging content about the song's meaning and impact.
 
