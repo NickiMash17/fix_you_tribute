@@ -1,14 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Meta tags for character encoding and responsive design -->
+    <!-- 
+        Meta tags for character encoding and responsive design 
+        - UTF-8 ensures proper character rendering
+        - Viewport tag makes the page responsive on mobile devices
+    -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fix You - A Song That Heals | Coldplay Tribute</title>
     
-    <!-- Main CSS styles -->
+    <!-- 
+        Main CSS styles 
+        - Contains all styling for the webpage
+        - Organized by section with clear comments
+    -->
     <style>
-        /* Global reset and base styles */
+        /* 
+            Global reset and base styles 
+            - Resets default browser styles
+            - Sets box-sizing to border-box for easier sizing
+            - Sets default font family
+        */
         * {
             margin: 0;
             padding: 0;
@@ -16,7 +29,11 @@
             font-family: 'Montserrat', sans-serif;
         }
 
-        /* CSS variables for consistent theming */
+        /* 
+            CSS variables for consistent theming 
+            - Defines color scheme and other reusable values
+            - Makes global style changes easier
+        */
         :root {
             --primary: #64ffda;
             --primary-dark: #4fd1b2;
@@ -27,7 +44,12 @@
             --text-secondary: #8892b0;
         }
 
-        /* Base body styles */
+        /* 
+            Base body styles 
+            - Sets default background and text colors
+            - Sets line height for better readability
+            - Prevents horizontal scrolling
+        */
         body {
             background-color: var(--bg-dark);
             color: var(--text-light);
@@ -35,7 +57,11 @@
             line-height: 1.6;
         }
 
-        /* Loading screen styles */
+        /* 
+            Loading screen styles 
+            - Full-screen overlay that appears while page loads
+            - Includes spinner animation and loading text
+        */
         .loading-screen {
             position: fixed;
             top: 0;
@@ -51,6 +77,7 @@
             transition: opacity 0.5s ease;
         }
 
+        /* Spinner animation for loading screen */
         .loading-spinner {
             width: 50px;
             height: 50px;
@@ -61,24 +88,35 @@
             margin-bottom: 20px;
         }
 
+        /* Loading text styling */
         .loading-text {
             color: var(--primary);
             font-size: 1.2rem;
             letter-spacing: 2px;
         }
 
+        /* Spinner rotation animation */
         @keyframes spin {
             to { transform: rotate(360deg); }
         }
 
-        /* Container for centered content */
+        /* 
+            Container for centered content 
+            - Centers page content with max-width
+            - Adds padding on smaller screens
+        */
         .container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 20px;
         }
 
-        /* Header with Parallax and Particles */
+        /* 
+            Header with Parallax and Particles 
+            - Full viewport height header with background image
+            - Uses flexbox to center content vertically
+            - Has fixed background for parallax effect
+        */
         header {
             height: 100vh;
             display: flex;
@@ -94,7 +132,12 @@
             overflow: hidden;
         }
 
-        /* Glowing Title Animation */
+        /* 
+            Main title styling with animation 
+            - Large font size for impact
+            - Gradient text effect
+            - Animation on page load
+        */
         header h1 {
             font-size: 6rem;
             margin-bottom: 1rem;
@@ -112,12 +155,19 @@
             animation: shine 3s linear infinite;
         }
 
+        /* Gradient text animation */
         @keyframes shine {
             to {
                 background-position: 200% center;
             }
         }
 
+        /* 
+            Subtitle styling 
+            - Smaller than main title
+            - Uses primary color for accent
+            - Animated on page load with delay
+        */
         header h2 {
             font-size: 1.8rem;
             margin-bottom: 2rem;
@@ -129,7 +179,12 @@
             font-weight: 400;
         }
 
-        /* Interactive Play Button */
+        /* 
+            Interactive Play Button 
+            - Circular button with pulse effect
+            - Play/pause icon in center
+            - Hover effects for interactivity
+        */
         .play-btn {
             width: 100px;
             height: 100px;
@@ -149,6 +204,7 @@
             position: relative;
         }
 
+        /* Pulse animation for play button */
         .play-btn::before {
             content: '';
             position: absolute;
@@ -160,12 +216,14 @@
             z-index: -1;
         }
 
+        /* Hover effects for play button */
         .play-btn:hover {
             transform: scale(1.1);
             background-color: rgba(100, 255, 218, 0.3);
             box-shadow: 0 0 40px rgba(100, 255, 218, 0.7);
         }
 
+        /* Play button icon styling */
         .play-btn i {
             color: var(--primary);
             font-size: 2.5rem;
@@ -173,7 +231,12 @@
             filter: drop-shadow(0 0 10px rgba(100, 255, 218, 0.5));
         }
 
-        /* Navigation */
+        /* 
+            Navigation buttons 
+            - Flex container for multiple buttons
+            - Centers buttons horizontally
+            - Adds margin for spacing
+        */
         .nav-buttons {
             display: flex;
             flex-wrap: wrap;
@@ -182,6 +245,12 @@
             z-index: 2;
         }
 
+        /* 
+            Button styling 
+            - Transparent background with border
+            - Hover effects with animation
+            - Uses primary color scheme
+        */
         .btn {
             display: inline-block;
             padding: 12px 20px;
@@ -200,6 +269,7 @@
             font-weight: 600;
         }
 
+        /* Button hover effect animation */
         .btn::before {
             content: '';
             position: absolute;
@@ -212,6 +282,7 @@
             z-index: -1;
         }
 
+        /* Button hover state */
         .btn:hover::before {
             width: 100%;
         }
@@ -222,7 +293,12 @@
             box-shadow: 0 7px 20px rgba(100, 255, 218, 0.3);
         }
 
-        /* Audio Controls */
+        /* 
+            Audio Controls 
+            - Custom styled audio player controls
+            - Includes progress bar and volume control
+            - Animated on page load
+        */
         .audio-controls {
             display: flex;
             align-items: center;
@@ -242,6 +318,7 @@
             border: 1px solid rgba(100, 255, 218, 0.2);
         }
 
+        /* Progress bar container */
         .progress-container {
             flex: 1;
             background-color: rgba(29, 59, 110, 0.7);
@@ -253,6 +330,7 @@
             overflow: hidden;
         }
 
+        /* Progress bar shimmer effect */
         .progress-container::after {
             content: '';
             position: absolute;
@@ -265,6 +343,7 @@
             transform: translateX(-100%);
         }
 
+        /* Progress bar fill */
         .progress {
             background-color: var(--primary);
             border-radius: 5px;
@@ -275,6 +354,7 @@
             z-index: 2;
         }
 
+        /* Control button styling */
         .control-btn {
             background: none;
             border: none;
@@ -291,18 +371,21 @@
             border-radius: 50%;
         }
 
+        /* Control button hover state */
         .control-btn:hover {
             color: var(--primary);
             transform: scale(1.1);
             background-color: rgba(100, 255, 218, 0.1);
         }
 
+        /* Volume control container */
         .volume-container {
             display: flex;
             align-items: center;
             position: relative;
         }
 
+        /* Volume slider styling */
         .volume-slider {
             position: absolute;
             bottom: 50px;
@@ -316,6 +399,7 @@
             cursor: pointer;
         }
 
+        /* Volume progress indicator */
         .volume-progress {
             position: absolute;
             bottom: 0;
@@ -326,18 +410,24 @@
             border-radius: 5px;
         }
 
-        /* Section Styling */
+        /* 
+            Section Styling 
+            - Base styling for all content sections
+            - Adds padding and relative positioning
+        */
         .section {
             padding: 100px 0;
             position: relative;
             overflow: hidden;
         }
 
+        /* Lyrics section specific styling */
         .lyrics-section {
             background-color: var(--bg-medium);
             position: relative;
         }
 
+        /* Section title styling */
         .section-title {
             font-size: 2.5rem;
             margin-bottom: 2rem;
@@ -346,6 +436,7 @@
             display: inline-block;
         }
 
+        /* Section title underline effect */
         .section-title::after {
             content: '';
             position: absolute;
@@ -357,7 +448,11 @@
             box-shadow: 0 0 10px rgba(100, 255, 218, 0.5);
         }
 
-        /* Lyrics Visual Section */
+        /* 
+            Lyrics Visual Section 
+            - Placeholder for lyrics (due to copyright)
+            - Visual representation of lyrics
+        */
         .lyrics-placeholder {
             background-color: var(--bg-light);
             border-radius: 10px;
@@ -373,6 +468,7 @@
             overflow: hidden;
         }
 
+        /* Sheen animation for lyrics placeholder */
         .lyrics-placeholder::before {
             content: '';
             position: absolute;
@@ -385,6 +481,7 @@
             animation: sheen 6s infinite linear;
         }
 
+        /* Sheen animation keyframes */
         @keyframes sheen {
             0% {
                 transform: translate(-50%, -50%) rotate(45deg);
@@ -394,22 +491,26 @@
             }
         }
 
+        /* Lyrics placeholder hover effect */
         .lyrics-placeholder:hover {
             transform: translateY(-10px);
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
         }
 
+        /* Lyrics placeholder heading */
         .lyrics-placeholder h3 {
             color: var(--primary);
             margin-bottom: 20px;
             font-size: 1.4rem;
         }
 
+        /* Lyrics placeholder icon styling */
         .lyrics-placeholder i {
             margin-right: 10px;
             color: var(--primary);
         }
 
+        /* Lyrics placeholder link styling */
         .lyrics-placeholder a {
             color: var(--primary);
             text-decoration: none;
@@ -418,6 +519,7 @@
             position: relative;
         }
 
+        /* Link underline animation */
         .lyrics-placeholder a::after {
             content: '';
             position: absolute;
@@ -429,6 +531,7 @@
             transition: width 0.3s ease;
         }
 
+        /* Link hover state */
         .lyrics-placeholder a:hover::after {
             width: 100%;
         }
@@ -438,7 +541,12 @@
             text-shadow: 0 0 5px rgba(100, 255, 218, 0.5);
         }
 
-        /* Lyric Bubbles */
+        /* 
+            Lyric Bubbles 
+            - Visual representation of lyrics
+            - Animated on scroll
+            - Hover effects
+        */
         .lyrics-visual {
             display: flex;
             flex-wrap: wrap;
@@ -448,6 +556,7 @@
             perspective: 1000px;
         }
 
+        /* Individual lyric bubble */
         .lyric-bubble {
             background-color: var(--bg-light);
             border-radius: 25px;
@@ -464,6 +573,7 @@
             z-index: 1;
         }
 
+        /* Lyric bubble background effect */
         .lyric-bubble::before {
             content: '';
             position: absolute;
@@ -475,23 +585,30 @@
             z-index: -1;
         }
 
+        /* Visible state when scrolled to */
         .lyric-bubble.visible {
             opacity: 1;
             transform: translateY(0) rotateX(0);
         }
 
+        /* Lyric bubble hover effect */
         .lyric-bubble:hover {
             transform: scale(1.1) translateY(-5px);
             background-color: #273f65;
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
         }
 
-        /* Meaning Section */
+        /* 
+            Meaning Section 
+            - Contains song interpretation and analysis
+            - Image and text layout
+        */
         .meaning-section {
             background-color: var(--bg-dark);
             position: relative;
         }
 
+        /* Flex container for meaning content */
         .meaning-content {
             display: flex;
             flex-wrap: wrap;
@@ -500,6 +617,7 @@
             gap: 30px;
         }
 
+        /* Text content styling */
         .meaning-text {
             flex: 1;
             min-width: 300px;
@@ -507,6 +625,7 @@
             line-height: 1.8;
         }
 
+        /* Paragraph styling with hover effect */
         .meaning-text p {
             margin-bottom: 20px;
             transform: translateY(0);
@@ -517,7 +636,12 @@
             transform: translateY(-3px);
         }
 
-        /* Meaning Image */
+        /* 
+            Meaning Image 
+            - Styled image with hover effects
+            - Gradient overlay
+            - Caption
+        */
         .meaning-image {
             flex: 1;
             min-width: 300px;
@@ -534,6 +658,7 @@
             background-image: url('https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
         }
 
+        /* Image overlay gradient */
         .meaning-image::before {
             content: '';
             position: absolute;
@@ -545,11 +670,13 @@
             z-index: 1;
         }
 
+        /* Image hover effect */
         .meaning-image:hover {
             transform: perspective(1000px) rotateY(5deg);
             box-shadow: -20px 20px 40px rgba(0, 0, 0, 0.6);
         }
 
+        /* Image caption */
         .meaning-image::after {
             content: 'Coldplay - Fix You';
             position: absolute;
@@ -565,7 +692,11 @@
             z-index: 2;
         }
 
-        /* Personal Story Section */
+        /* 
+            Personal Story Section 
+            - User-submitted story about the song's impact
+            - Styled with animations and visual effects
+        */
         .personal-story {
             background: linear-gradient(135deg, rgba(29, 59, 110, 0.9) 0%, rgba(10, 25, 47, 0.9) 100%);
             border-left: 4px solid var(--primary);
@@ -579,6 +710,7 @@
             animation: fadeIn 1s ease-out;
         }
 
+        /* Background pattern */
         .personal-story::before {
             content: "";
             position: absolute;
@@ -590,7 +722,7 @@
             z-index: 0;
         }
 
-        /* Story Title */
+        /* Story title with heartbeat animation */
         .story-title {
             color: var(--primary);
             font-size: 1.8rem;
@@ -600,13 +732,14 @@
             animation: heartbeat 2s ease-in-out infinite;
         }
 
+        /* Title icon styling */
         .story-title i {
             margin-right: 12px;
             color: #ff6b6b;
             transition: all 0.3s ease;
         }
 
-        /* Story Content */
+        /* Story content text */
         .story-content {
             font-size: 1.1rem;
             line-height: 1.8;
@@ -615,6 +748,7 @@
             margin-bottom: 20px;
         }
 
+        /* Highlighted lyric styling */
         .highlight-lyric {
             color: var(--primary);
             font-weight: 600;
@@ -623,7 +757,7 @@
             transition: all 0.3s ease;
         }
 
-        /* Story Signature */
+        /* Story signature styling */
         .story-signature {
             font-style: italic;
             color: var(--text-secondary);
@@ -633,13 +767,14 @@
             font-size: 1.05rem;
         }
 
+        /* Tear drop icon animation */
         .tear-icon {
             color: #64a6ff;
             margin-right: 8px;
             animation: tearDrop 2.5s ease-in-out infinite;
         }
 
-        /* Animations */
+        /* Heartbeat animation */
         @keyframes heartbeat {
             0%, 100% { transform: scale(1); }
             25% { transform: scale(1.03); }
@@ -647,17 +782,19 @@
             75% { transform: scale(1.03); }
         }
 
+        /* Tear drop animation */
         @keyframes tearDrop {
             0%, 100% { transform: translateY(0) scale(1); opacity: 0.8; }
             50% { transform: translateY(3px) scale(1.1); opacity: 1; }
         }
 
+        /* Fade in animation */
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(15px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* Hover Effects */
+        /* Hover Effects for personal story */
         .personal-story:hover {
             transform: translateY(-5px);
             box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
@@ -673,7 +810,11 @@
             text-shadow: 0 0 15px rgba(100, 255, 218, 0.8);
         }
 
-        /* Quote Section */
+        /* 
+            Quote Section 
+            - Styled blockquote with decorative quotes
+            - Animation on scroll
+        */
         .quote-section {
             text-align: center;
             margin: 80px 0;
@@ -683,11 +824,13 @@
             transition: all 0.5s ease;
         }
 
+        /* Visible state when scrolled to */
         .quote-section.visible {
             opacity: 1;
             transform: translateY(0);
         }
 
+        /* Quote text styling */
         .quote {
             font-size: 1.8rem;
             font-style: italic;
@@ -702,6 +845,7 @@
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
         }
 
+        /* Decorative quote marks */
         .quote::before, .quote::after {
             content: '"';
             font-size: 5rem;
@@ -720,7 +864,12 @@
             right: -10px;
         }
 
-        /* Info Cards */
+        /* 
+            Info Cards 
+            - Styled content containers
+            - Animated on scroll
+            - Hover effects
+        */
         .info-card {
             background-color: var(--bg-light);
             border-radius: 10px;
@@ -735,6 +884,7 @@
             overflow: hidden;
         }
 
+        /* Sheen animation for info cards */
         .info-card::before {
             content: '';
             position: absolute;
@@ -747,26 +897,31 @@
             animation: sheen 10s infinite linear;
         }
 
+        /* Visible state when scrolled to */
         .info-card.visible {
             opacity: 1;
             transform: translateY(0);
         }
 
+        /* Info card hover effect */
         .info-card:hover {
             transform: translateY(-10px);
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
         }
 
+        /* Info card heading */
         .info-card h3 {
             color: var(--primary);
             margin-bottom: 20px;
             font-size: 1.5rem;
         }
 
+        /* Info card list styling */
         .info-card ul {
             padding-left: 0;
         }
 
+        /* Info card list items */
         .info-card li {
             margin-bottom: 10px;
             transition: all 0.3s ease;
@@ -776,6 +931,7 @@
             transform: translateX(5px);
         }
 
+        /* Info card icons */
         .info-card i {
             margin-right: 10px;
             color: var(--primary);
@@ -786,20 +942,31 @@
             transform: scale(1.2);
         }
 
-        /* Memory Section */
+        /* 
+            Memory Section 
+            - Timeline of song's history
+            - User memories
+            - Newsletter signup
+        */
         .memory-section {
             background-color: var(--bg-medium);
             text-align: center;
             position: relative;
         }
 
-        /* Timeline */
+        /* 
+            Timeline 
+            - Vertical timeline with events
+            - Alternating left/right layout
+            - Animated on scroll
+        */
         .timeline {
             position: relative;
             max-width: 800px;
             margin: 80px auto;
         }
 
+        /* Timeline vertical line */
         .timeline::after {
             content: '';
             position: absolute;
@@ -812,6 +979,7 @@
             box-shadow: 0 0 10px rgba(100, 255, 218, 0.5);
         }
 
+        /* Timeline item container */
         .timeline-item {
             padding: 10px 40px;
             position: relative;
@@ -823,11 +991,13 @@
             transition: all 0.5s ease;
         }
 
+        /* Visible state when scrolled to */
         .timeline-item.visible {
             opacity: 1;
             transform: translateY(0);
         }
 
+        /* Timeline marker */
         .timeline-item::after {
             content: '';
             position: absolute;
@@ -842,11 +1012,13 @@
             transition: all 0.3s ease;
         }
 
+        /* Timeline marker hover effect */
         .timeline-item:hover::after {
             transform: scale(1.3);
             box-shadow: 0 0 20px rgba(100, 255, 218, 1);
         }
 
+        /* Alternate timeline items to left/right */
         .timeline-item:nth-child(odd) {
             left: 0;
             text-align: right;
@@ -857,10 +1029,12 @@
             text-align: left;
         }
 
+        /* Position marker for right-side items */
         .timeline-item:nth-child(even)::after {
             left: -10px;
         }
 
+        /* Timeline content styling */
         .timeline-content {
             padding: 25px;
             background-color: var(--bg-light);
@@ -870,20 +1044,24 @@
             border-left: 3px solid transparent;
         }
 
+        /* Border styling for left-side items */
         .timeline-item:nth-child(odd) .timeline-content {
             border-right: 3px solid var(--primary);
             border-left: none;
         }
 
+        /* Border styling for right-side items */
         .timeline-item:nth-child(even) .timeline-content {
             border-left: 3px solid var(--primary);
         }
 
+        /* Timeline content hover effect */
         .timeline-content:hover {
             transform: scale(1.05);
             box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
         }
 
+        /* Timeline date styling */
         .timeline-date {
             color: var(--primary);
             font-weight: bold;
@@ -891,7 +1069,12 @@
             font-size: 1.1rem;
         }
 
-        /* Memory Cards */
+        /* 
+            Memory Cards 
+            - User-submitted memories
+            - Styled cards with hover effects
+            - Animated on scroll
+        */
         .memory-cards {
             display: flex;
             flex-wrap: wrap;
@@ -900,6 +1083,7 @@
             margin-top: 3rem;
         }
 
+        /* Individual memory card */
         .memory-card {
             background-color: var(--bg-light);
             border-radius: 10px;
@@ -915,6 +1099,7 @@
             overflow: hidden;
         }
 
+        /* Sheen animation for memory cards */
         .memory-card::before {
             content: '';
             position: absolute;
@@ -928,11 +1113,13 @@
             animation-delay: 2s;
         }
 
+        /* Visible state when scrolled to */
         .memory-card.visible {
             opacity: 1;
             transform: translateY(0) rotateZ(0deg);
         }
 
+        /* Different border colors for cards */
         .memory-card:nth-child(1) {
             border-left-color: var(--primary);
         }
@@ -945,28 +1132,37 @@
             border-left-color: #ffd166;
         }
 
+        /* Memory card hover effect */
         .memory-card:hover {
             transform: translateY(-15px) rotateZ(-2deg);
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
         }
 
+        /* Memory card heading */
         .memory-card h3 {
             color: var(--primary);
             margin-bottom: 15px;
             font-size: 1.3rem;
         }
 
+        /* Memory card text */
         .memory-card p {
             margin-bottom: 15px;
             line-height: 1.7;
         }
 
+        /* Credits text */
         .credits {
             font-style: italic;
             color: var(--text-secondary);
         }
 
-        /* Newsletter */
+        /* 
+            Newsletter 
+            - Email signup form
+            - Gradient background
+            - Animated on scroll
+        */
         .newsletter {
             background: linear-gradient(135deg, var(--bg-light), #243b69);
             padding: 40px;
@@ -983,6 +1179,7 @@
             overflow: hidden;
         }
 
+        /* Shine animation for newsletter */
         .newsletter::after {
             content: '';
             position: absolute;
@@ -995,6 +1192,7 @@
             z-index: 1;
         }
 
+        /* Shine animation keyframes */
         @keyframes shine-horizontal {
             0% {
                 transform: translateX(-100%);
@@ -1004,17 +1202,20 @@
             }
         }
 
+        /* Visible state when scrolled to */
         .newsletter.visible {
             opacity: 1;
             transform: translateY(0);
         }
 
+        /* Newsletter heading */
         .newsletter h3 {
             margin-bottom: 20px;
             color: var(--primary);
             font-size: 1.4rem;
         }
 
+        /* Newsletter form layout */
         .newsletter-form {
             display: flex;
             margin-top: 25px;
@@ -1022,6 +1223,7 @@
             z-index: 2;
         }
 
+        /* Newsletter input field */
         .newsletter-input {
             flex: 1;
             padding: 15px 20px;
@@ -1034,11 +1236,13 @@
             font-size: 1rem;
         }
 
+        /* Input focus state */
         .newsletter-input:focus {
             background-color: rgba(230, 241, 255, 0.15);
             box-shadow: 0 0 15px rgba(100, 255, 218, 0.2);
         }
 
+        /* Newsletter submit button */
         .newsletter-btn {
             background-color: var(--primary);
             border: none;
@@ -1051,13 +1255,18 @@
             font-size: 1rem;
         }
 
+        /* Button hover state */
         .newsletter-btn:hover {
             background-color: var(--primary-dark);
             transform: translateX(3px);
             box-shadow: -5px 0 15px rgba(100, 255, 218, 0.3);
         }
 
-        /* Footer */
+        /* 
+            Footer 
+            - Site footer with social links and credits
+            - Styled with subtle effects
+        */
         footer {
             background-color: var(--bg-dark);
             padding: 80px 0 40px;
@@ -1067,6 +1276,7 @@
             overflow: hidden;
         }
 
+        /* Footer top border */
         footer::before {
             content: '';
             position: absolute;
@@ -1077,10 +1287,12 @@
             background: linear-gradient(90deg, transparent, var(--primary), transparent);
         }
 
+        /* Social links container */
         .social-links {
             margin: 40px 0;
         }
 
+        /* Individual social link */
         .social-link {
             color: var(--text-light);
             font-size: 1.8rem;
@@ -1090,6 +1302,7 @@
             position: relative;
         }
 
+        /* Social link underline animation */
         .social-link::after {
             content: '';
             position: absolute;
@@ -1101,6 +1314,7 @@
             transition: all 0.3s ease;
         }
 
+        /* Social link hover state */
         .social-link:hover {
             color: var(--primary);
             transform: translateY(-5px);
@@ -1110,12 +1324,18 @@
             width: 100%;
         }
 
+        /* Credits text */
         .credits p {
             margin: 5px 0;
             color: var(--text-secondary);
         }
 
-        /* Back to Top Button */
+        /* 
+            Back to Top Button 
+            - Fixed position button
+            - Appears on scroll
+            - Animated hover effect
+        */
         .back-to-top {
             position: fixed;
             bottom: 30px;
@@ -1137,18 +1357,24 @@
             box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
         }
 
+        /* Visible state when scrolled */
         .back-to-top.visible {
             opacity: 1;
             transform: translateY(0);
         }
 
+        /* Button hover effect */
         .back-to-top:hover {
             transform: translateY(-5px) rotate(360deg);
             box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
             transition: all 0.5s ease;
         }
 
-        /* Floating Notes (Music Notes) */
+        /* 
+            Floating Notes (Music Notes) 
+            - Decorative animated music notes
+            - Absolute positioned throughout page
+        */
         .floating-notes {
             position: absolute;
             width: 100%;
@@ -1160,6 +1386,7 @@
             z-index: 1;
         }
 
+        /* Individual note styling */
         .note {
             position: absolute;
             width: 30px;
@@ -1173,7 +1400,10 @@
             background-repeat: no-repeat;
         }
 
-        /* Keyframes */
+        /* 
+            Keyframes for animations 
+            - Defines various animation behaviors
+        */
         @keyframes fadeUp {
             to {
                 opacity: 1;
@@ -1226,8 +1456,13 @@
             }
         }
 
-        /* Responsive Design */
+        /* 
+            Responsive Design 
+            - Media queries for tablet and mobile devices
+            - Adjusts layout and sizing for smaller screens
+        */
         @media screen and (max-width: 768px) {
+            /* Adjust header text size */
             header h1 {
                 font-size: 3rem;
             }
@@ -1235,19 +1470,23 @@
                 font-size: 1.2rem;
             }
             
+            /* Reduce section padding */
             .section {
                 padding: 60px 0;
             }
             
+            /* Stack meaning content vertically */
             .meaning-content {
                 flex-direction: column;
             }
             
+            /* Adjust image size */
             .meaning-image {
                 width: 90%;
                 margin: 20px auto;
             }
             
+            /* Adjust timeline for mobile */
             .timeline::after {
                 left: 31px;
             }
@@ -1274,6 +1513,7 @@
                 left: 21px;
             }
             
+            /* Adjust quote styling */
             .quote {
                 font-size: 1.3rem;
                 padding: 20px;
@@ -1283,6 +1523,7 @@
                 font-size: 2.5rem;
             }
             
+            /* Stack newsletter form */
             .newsletter-form {
                 flex-direction: column;
             }
@@ -1296,6 +1537,7 @@
                 border-radius: 5px;
             }
             
+            /* Full width memory cards */
             .memory-card {
                 width: 100%;
                 max-width: 350px;
@@ -1303,18 +1545,29 @@
         }
     </style>
     
-    <!-- External resources -->
+    <!-- 
+        External resources 
+        - Font Awesome for icons
+        - Google Fonts for typography
+    -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- Loading Screen -->
+    <!-- 
+        Loading Screen 
+        - Shown while page resources load
+        - Fades out when page is ready
+    -->
     <div class="loading-screen" id="loadingScreen">
         <div class="loading-spinner"></div>
         <div class="loading-text">Loading...</div>
     </div>
 
-    <!-- Main Header Section -->
+    <!-- 
+        Main Header Section 
+        - Hero section with title, play button, and navigation
+    -->
     <header>
         <div class="container">
             <h1 style="color: red; opacity: 1 !important; transform: none !important;">FIX YOU</h1>
@@ -1323,7 +1576,11 @@
                 <i class="fas fa-play"></i>
             </div>
             
-            <!-- Audio Controls -->
+            <!-- 
+                Audio Controls 
+                - Simulated audio player controls
+                - Play/pause, progress bar, volume
+            -->
             <div class="audio-controls">
                 <p style="font-size: 0.8rem; margin-top: 10px; color: var(--primary);">
                     <i class="fas fa-info-circle"></i> Audio simulation only - listen on official platforms
@@ -1352,7 +1609,10 @@
                 </div>
             </div>
             
-            <!-- Navigation Buttons -->
+            <!-- 
+                Navigation Buttons 
+                - Links to page sections
+            -->
             <div class="nav-buttons">
                 <a href="#lyrics" class="btn">Explore Lyrics</a>
                 <a href="#meaning" class="btn">Discover Meaning</a>
@@ -1362,11 +1622,19 @@
         <div class="floating-notes" id="floatingNotes"></div>
     </header>    
 
-    <!-- Lyrics Section -->
+    <!-- 
+        Lyrics Section 
+        - Contains lyrics placeholder and visualization
+    -->
     <section class="section lyrics-section" id="lyrics">
         <div class="container">
             <h2 class="section-title">Lyrics That Touch The Soul</h2>
             
+            <!-- 
+                Lyrics Placeholder 
+                - Explanation for why full lyrics aren't shown
+                - Links to official sources
+            -->
             <div class="lyrics-placeholder">
                 <h3>Listen to the Moving Lyrics</h3>
                 <p>Due to copyright restrictions, we cannot display the full lyrics here. To enjoy the complete lyrics while respecting copyright:</p>
@@ -1376,7 +1644,10 @@
                 <p><i class="fas fa-music"></i> Check licensed lyrics providers</p>
             </div>
             
-            <!-- Lyrics Visualization -->
+            <!-- 
+                Lyrics Visualization 
+                - Bubble elements representing lyrics themes
+            -->
             <div class="lyrics-visual">
                 <div class="lyric-bubble">Emotional journey</div>
                 <div class="lyric-bubble">Comforting presence</div>
@@ -1388,7 +1659,10 @@
                 <div class="lyric-bubble">Try to fix you</div>
             </div>
             
-            <!-- Song Structure Info Card -->
+            <!-- 
+                Song Structure Info Card 
+                - Breakdown of song composition
+            -->
             <div class="info-card">
                 <h3>Song Structure</h3>
                 <p>The song builds from a gentle piano opening to a powerful, emotionally charged climax with full instrumentation. Its distinctive structure includes:</p>
@@ -1405,11 +1679,18 @@
         <div class="floating-notes"></div>
     </section>
 
-    <!-- Meaning Section -->
+    <!-- 
+        Meaning Section 
+        - Interpretation and analysis of the song
+    -->
     <section class="section meaning-section" id="meaning">
         <div class="container">
             <h2 class="section-title">The Deeper Meaning</h2>
             
+            <!-- 
+                Meaning Content 
+                - Text explanation and image
+            -->
             <div class="meaning-content">
                 <div class="meaning-text">
                     <p>Released in 2005 as part of Coldplay's third album "X&Y," "Fix You" has become one of the band's most beloved songs. Chris Martin reportedly wrote it for his then-wife Gwyneth Paltrow after the death of her father.</p>
@@ -1423,7 +1704,10 @@
                 <div class="meaning-image"></div>
             </div>
             
-            <!-- Personal Story Card -->
+            <!-- 
+                Personal Story Card 
+                - User-submitted story about song's impact
+            -->
             <div class="info-card personal-story">
                 <h3 class="story-title">
                   <i class="fas fa-heart"></i> 
@@ -1444,12 +1728,18 @@
                 </p>
               </div>
   
-            <!-- Quote Section -->
+            <!-- 
+                Quote Section 
+                - Highlighted quote about the song
+            -->
             <div class="quote-section">
                 <p class="quote">The song is a kind of hope against hopelessness... It's saying 'I can't fix you but I'll do my best to be there for you.'</p>
             </div>
             
-            <!-- Musical Elements Info Card -->
+            <!-- 
+                Musical Elements Info Card 
+                - Breakdown of musical components
+            -->
             <div class="info-card">
                 <h3>Musical Elements</h3>
                 <p>The song's emotional impact is carefully crafted through various musical techniques:</p>
@@ -1464,12 +1754,20 @@
         </div>
     </section>
 
-    <!-- Memories Section -->
+    <!-- 
+        Memories Section 
+        - Timeline of song's history
+        - User memories
+        - Newsletter signup
+    -->
     <section class="section memory-section" id="memories">
         <div class="container">
             <h2 class="section-title">The Journey of "Fix You"</h2>
             
-            <!-- Timeline -->
+            <!-- 
+                Timeline 
+                - Key events in song's history
+            -->
             <div class="timeline">
                 <div class="timeline-item">
                     <div class="timeline-content">
@@ -1511,7 +1809,10 @@
             
             <h2 class="section-title">Personal Memories</h2>
             
-            <!-- Memory Cards -->
+            <!-- 
+                Memory Cards 
+                - User-submitted stories about the song
+            -->
             <div class="memory-cards">
                 <div class="memory-card">
                     <h3>Finding Strength</h3>
@@ -1530,7 +1831,10 @@
                 </div>
             </div>
             
-            <!-- Newsletter Signup -->
+            <!-- 
+                Newsletter Signup 
+                - Email collection form
+            -->
             <div class="newsletter">
                 <h3>Join Our Community</h3>
                 <p>Subscribe to receive updates about Coldplay and other music that heals</p>
@@ -1543,7 +1847,10 @@
         </div>
     </section>
 
-    <!-- Footer Section -->
+    <!-- 
+        Footer Section 
+        - Social links and copyright info
+    -->
     <footer id="contact">
         <div class="container">
             <h2 class="section-title">Connect With Us</h2>
@@ -1563,17 +1870,26 @@
         </div>
     </footer>
 
-    <!-- Back to Top Button -->
+    <!-- 
+        Back to Top Button 
+        - Fixed position button for easy navigation
+    -->
     <div class="back-to-top" id="backToTop">
         <i class="fas fa-arrow-up"></i>
     </div>
 
-    <!-- Main JavaScript -->
+    <!-- 
+        Main JavaScript 
+        - All interactive functionality
+        - Organized with clear comments
+    -->
     <script>
         // Initialize everything when DOM is loaded
         document.addEventListener('DOMContentLoaded', function() {
             /**
              * Creates floating music notes animation
+             * - Adds decorative music note elements that float up
+             * - Randomizes position and animation timing
              */
             function createNotes() {
                 const floatingNotes = document.querySelectorAll('.floating-notes');
@@ -1592,6 +1908,9 @@
 
             /**
              * Sets up the audio player functionality
+             * - Simulates play/pause functionality
+             * - Handles progress bar interaction
+             * - Controls volume slider
              */
             function setupAudioPlayer() {
                 const mainPlayBtn = document.getElementById('mainPlayBtn');
@@ -1609,6 +1928,8 @@
                 
                 /**
                  * Toggles between play and pause states
+                 * - Updates button icons
+                 * - Starts/stops playback simulation
                  */
                 function togglePlayPause() {
                     const icon = playBtn.querySelector('i');
@@ -1633,6 +1954,8 @@
                 
                 /**
                  * Simulates song playback progress
+                 * - Updates progress bar over time
+                 * - Resets when reaching 100%
                  */
                 function simulatePlayback() {
                     clearInterval(playbackInterval);
@@ -1646,7 +1969,7 @@
                     }, 500);
                 }
                 
-                // Progress bar click handler
+                // Progress bar click handler - jumps to clicked position
                 progressContainer.addEventListener('click', (e) => {
                     const width = progressContainer.clientWidth;
                     const clickX = e.offsetX;
@@ -1654,12 +1977,12 @@
                     progress.style.width = currentProgress + '%';
                 });
                 
-                // Volume control toggle
+                // Volume control toggle - shows/hides volume slider
                 volumeBtn.addEventListener('click', () => {
                     volumeSlider.style.display = volumeSlider.style.display === 'block' ? 'none' : 'block';
                 });
                 
-                // Volume slider interaction
+                // Volume slider interaction - sets volume level
                 volumeSlider.addEventListener('click', (e) => {
                     const height = volumeSlider.clientHeight;
                     const clickY = e.offsetY;
@@ -1667,7 +1990,7 @@
                     volumeProgress.style.height = volume + '%';
                 });
                 
-                // Previous button handler
+                // Previous button handler - resets progress
                 document.getElementById('prevBtn').addEventListener('click', () => {
                     currentProgress = 0;
                     progress.style.width = '0%';
@@ -1677,7 +2000,7 @@
                     }
                 });
                 
-                // Next button handler
+                // Next button handler - resets progress
                 document.getElementById('nextBtn').addEventListener('click', () => {
                     currentProgress = 0;
                     progress.style.width = '0%';
@@ -1694,6 +2017,8 @@
             
             /**
              * Sets up smooth scrolling for anchor links
+             * - Intercepts anchor link clicks
+             * - Smoothly scrolls to target section
              */
             function setupSmoothScrolling() {
                 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -1715,6 +2040,8 @@
 
             /**
              * Sets up back to top button functionality
+             * - Shows/hides button based on scroll position
+             * - Scrolls to top when clicked
              */
             function setupBackToTop() {
                 const backToTopBtn = document.getElementById('backToTop');
@@ -1739,6 +2066,8 @@
 
             /**
              * Sets up scroll-triggered animations
+             * - Uses IntersectionObserver to detect when elements are visible
+             * - Adds 'visible' class to trigger animations
              */
             function setupScrollAnimations() {
                 const observer = new IntersectionObserver((entries) => {
@@ -1766,6 +2095,8 @@
             
             /**
              * Sets up newsletter form functionality
+             * - Validates email input
+             * - Shows success/error messages
              */
             function setupNewsletter() {
                 const newsletterBtn = document.getElementById('newsletterBtn');
@@ -1795,7 +2126,7 @@
                 });
                 
                 /**
-                 * Validates email format
+                 * Validates email format using regex
                  * @param {string} email - Email address to validate
                  * @returns {boolean} True if email is valid
                  */
@@ -1824,7 +2155,7 @@
                 }
             }
 
-            // Loading screen transition
+            // Loading screen transition - fades out when page loads
             window.addEventListener('load', function() {
                 setTimeout(function() {
                     document.getElementById('loadingScreen').style.opacity = '0';
@@ -1851,7 +2182,7 @@
                 });
             });
 
-            // Initialize all functions
+            // Initialize all functions when page loads
             createNotes();
             setupAudioPlayer();
             setupSmoothScrolling();
